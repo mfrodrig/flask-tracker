@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <h1> Tracker app</h1>
+    <h1> Tracker App</h1>
 
     <form action="">
         <div>
@@ -19,9 +19,16 @@
         </div>
     </form>
 
-    {% for tracker_list %}
-    <P> {{ tracker.id }} | {{tracker.title}} </P>
-    {% endfor %}
+    {% for item in Tracker %}
+
+        <p> {{ item.id }} | {{ item.title}} </p>
+        {% if item.complete == False %}
+            <span>Not complete</span>
+        {% else %}
+            <span> Completed</span>
+        {% endif %}
+
+    {%endfor%}
 
 
 </body>

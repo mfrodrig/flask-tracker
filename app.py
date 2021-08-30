@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIOINS'] = False
 db = SQLAlchemy(app)
 
 class Tracker(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
 
@@ -17,13 +17,8 @@ class Tracker(db.Model):
 def index():
     #show all items
     tracker_list = Tracker.query.all()
-    return render_template('base.html', tracker_list = tracker_list)   
+    return render_template('base.html', tracker_list=tracker_list)
 
 if __name__ == "__main__":
     db.create_all()
-
-    new_item = Tracker(title = "Item 1", complete = False)
-    db.session.add(new_item)
-    db.session.commit()
-
     app.run(debug = True)
