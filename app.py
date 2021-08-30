@@ -17,8 +17,7 @@ class Tracker(db.Model):
 def index():
     #show all items
     tracker_list = Tracker.query.all()
-    print(tracker_list)
-    return render_template('base.html')   
+    return render_template('base.html', tracker_list = tracker_list)   
 
 if __name__ == "__main__":
     db.create_all()
