@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -18,6 +18,16 @@ def index():
     #show all items
     tracker_list = Tracker.query.all()
     return render_template('base.html', tracker_list=tracker_list)
+
+@app.route("/add", methods = ["POST"])
+def add():
+    #add new item
+    title = request.form.get("title")
+    new_item = Tracker(title=title, complete = False)
+    db.session.add(new_item)
+    db.session.commit()
+    return redirect(url_for("index"))
+
 
 if __name__ == "__main__":
     db.create_all()

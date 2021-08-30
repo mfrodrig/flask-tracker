@@ -10,7 +10,7 @@
     
     <h1> Tracker App</h1>
 
-    <form action="">
+    <form action="/add" method = "post">
         <div>
             <label for="title">Item Title</label>
             <input type="text " name = "title" placeholder="Enter Item...">
@@ -19,14 +19,17 @@
         </div>
     </form>
 
-    {% for item in Tracker %}
+    {% for item in tracker_list %}
 
         <p> {{ item.id }} | {{ item.title}} </p>
         {% if item.complete == False %}
-            <span>Not complete</span>
+            <span> Not Completed</span>
         {% else %}
-            <span> Completed</span>
+            <span> Completed </span>
         {% endif %}
+
+        <a href="/">Update</a>
+        <a href="/">Delete</a>
 
     {%endfor%}
 
