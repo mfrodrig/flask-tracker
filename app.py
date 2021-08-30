@@ -28,6 +28,19 @@ def add():
     db.session.commit()
     return redirect(url_for("index"))
 
+@app.route("/update/<int:item_id>")
+def update(item_id):
+    item = Tracker.query.filter_by(id=item_id).first()
+    item.complete = not item.complete
+    db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/delete/<int:item_id>")
+def delete(item_id):
+    item = Tracker.query.filter_by(id=item_id).first()
+    db.session.delete(item)
+    db.session.commit()
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     db.create_all()
